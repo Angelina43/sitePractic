@@ -14,7 +14,6 @@ from .views import DeleteUserView
 from .views import by_rubric
 from .views import detail
 from .views import profile_bb_add
-from .views import profile_bb_delete
 
 app_name = 'main'
 
