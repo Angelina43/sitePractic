@@ -234,3 +234,5 @@ def profile_bb_delete(request, pk):
     else:
         context = {'bb': bb}
         return render(request, 'main/profile_bb_delete.html', context)
+
+
