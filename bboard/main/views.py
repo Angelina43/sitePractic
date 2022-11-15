@@ -1,6 +1,6 @@
 # Код контроллер-функции и Код контроллера-класса
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, Http404
 from django.template import TemplateDoesNotExist

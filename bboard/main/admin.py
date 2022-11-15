@@ -47,13 +47,13 @@ class NoactivatedFilter(admin.SimpleListFilter):
 
 class AdvUserAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'is_activated', 'date_joined')
-    search_fields = ('username', 'email', 'first_name', 'last_name')
+    search_fields = ('username', 'email', 'first_name', 'last_name', 'middle_name')
     list_filter = (NoactivatedFilter,)
     fields = (
         ('username', 'email'),
-        ('first_name', 'last_name'),
+        ('first_name', 'last_name', 'middle_name'),
         ('is_staff', 'is_superuser'),
-        ('last_login', 'date_joined')
+        ('last_login', 'date_joined'),
     )
     readonly_fields = ('last_login', 'date_joined',)
     actions = (send_activation_notifications,)

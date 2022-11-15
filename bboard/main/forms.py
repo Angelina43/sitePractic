@@ -10,8 +10,7 @@ from .models import user_registrated
 from .models import SuperRubric, SubRubric
 
 from .models import Bb, AdditionalImage
-from django.forms import inlineformset_factory
-
+from django.forms import inlineformset_factory, CharField
 
 
 class ChangeUserInfoForm(forms.ModelForm):
@@ -20,8 +19,8 @@ class ChangeUserInfoForm(forms.ModelForm):
 
     class Meta:
         model = AdvUser
-        fields = ('username', 'email', 'first_name', 'last_name',
-                  'send_messages')
+        fields = ('username', 'email', 'first_name', 'last_name', 'middle_name',
+                  'apply_personal_data')
 
 
 class RegisterUserForm(forms.ModelForm):
@@ -33,6 +32,7 @@ class RegisterUserForm(forms.ModelForm):
     password2 = forms.CharField(label='Пароль (повторно)',
                                 widget=forms.PasswordInput,
                                 help_text='Повторите тот же самый пароль еще раз')
+    middle_name = forms.CharField(label='Отчество')
 
     def clean_password1(self):
         password1 = self.cleaned_data['password1']
@@ -63,7 +63,7 @@ class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = AdvUser
         fields = ('username', 'email', 'password1', 'password2',
-                  'first_name', 'last_name', 'send_messages')
+                  'first_name', 'last_name', 'middle_name', 'apply_personal_data')
 
 
 class SubRubricForm(forms.ModelForm):
@@ -82,9 +82,10 @@ class SearchForm(forms.Form):
 
 
 class BbForm(forms.ModelForm):
-   class Meta:
-       model = Bb
-       fields = '__all__'
-       widgets = {'author': forms.HiddenInput}
+    class Meta:
+        model = Bb
+        fields = '__all__'
+        widgets = {'author': forms.HiddenInput}
+
 
 AIFormSet = inlineformset_factory(Bb, AdditionalImage, fields='__all__')

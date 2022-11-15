@@ -18,8 +18,9 @@ user_registrated = Signal(providing_args=['instance'])
 class AdvUser(AbstractUser):
     is_activated = models.BooleanField(default=True, db_index=True,
                                        verbose_name='Прошел активацию?')
-    send_messages = models.BooleanField(default=True,
-                                        verbose_name='Оповещать при новых комментариях?')
+    middle_name = models.CharField(max_length=50, blank=True, null=True, default='')
+    apply_personal_data = models.BooleanField(default=False,
+                                              verbose_name='Согласие на обработку персональных данных')
 
     def delete(self, *args, **kwargs):
         for bb in self.bb_set.all():
