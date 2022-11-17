@@ -5,6 +5,7 @@ from .utilities import get_timestamp_path
 
 # from .utilities import send_activation_notification
 
+from datetime import date, timedelta
 
 user_registrated = Signal(providing_args=['instance'])
 

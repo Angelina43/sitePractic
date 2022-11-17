@@ -145,10 +145,6 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
 
 def by_rubric(request, pk):
-    pass
-
-
-def by_rubric(request, pk):
     rubric = get_object_or_404(SubRubric, pk=pk)
     bbs = Bb.objects.filter(is_active=True, rubric=pk)
     if 'keyword' in request.GET:
@@ -200,4 +196,17 @@ def profile_bb_add(request):
     context = {'form': form, 'formset': formset}
     return render(request, 'main/profile_bb_add.html', context)
 
-
+#удаление объявления. Выдает ошибку что у модели ADVuser нет is_author
+@login_required
+def profile_bb_delete(request, pk):
+    bb = get_object_or_404(Bb, pk=pk)
+    if not request.user.is_author(bb):
+        return redirect('main:profile')
+    if request.method == 'POST':
+        bb.delete()
+        messages.add_message(request, messages.SUCCESS,
+                             'Объявление удалено')
+        return redirect('main:profile')
+    else:
+        context = {'bb': bb}
+        return render(request, 'main/profile_bb_delete.html', context)
