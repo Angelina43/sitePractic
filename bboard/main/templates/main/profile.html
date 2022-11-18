@@ -34,6 +34,9 @@
            </li>
     {% endfor %}
     <p><a href="{% url 'main:profile_bb_add' %}">Добавить объявление</a> </p>
+    <p><a href="{% url 'main:profile_bb_delete' user.pk %}">Удалить объявление</a></p>
+<!--    Ошибка тут в user.pk-->
+
 {% endblock %}
 
 
