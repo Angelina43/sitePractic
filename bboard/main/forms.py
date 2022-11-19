@@ -25,13 +25,13 @@ class ChangeUserInfoForm(forms.ModelForm):
 
 class RegisterUserForm(forms.ModelForm):
     email = forms.EmailField(required=True,
-                             label='Адрес электронной почты')
+                             label='Адрес электронной почты', help_text='Валидный формат email - адрес')
     password1 = forms.CharField(label='Пароль',
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label='Пароль (повторно)',
                                 widget=forms.PasswordInput,
                                 help_text='Повторите тот же самый пароль еще раз')
-    middle_name = forms.CharField(label='Отчество')
+    middle_name = forms.CharField(label='Отчество', help_text='Только кириллические буквы, дефис и пробелы')
 
     def clean_password1(self):
         password1 = self.cleaned_data['password1']
@@ -63,6 +63,11 @@ class RegisterUserForm(forms.ModelForm):
         model = AdvUser
         fields = ('username', 'email', 'password1', 'password2',
                   'first_name', 'last_name', 'middle_name', 'apply_personal_data')
+        help_texts = {
+            'username': 'Только латиница и дефис, уникальный',
+            'first_name': 'Только кириллические буквы, дефис и пробелы',
+            'last_name': 'Только кириллические буквы, дефис и пробелы',
+        }
 
 
 class SubRubricForm(forms.ModelForm):

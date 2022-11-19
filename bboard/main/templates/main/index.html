@@ -4,7 +4,14 @@
 
 {% block content %}
    <h2>Последние 4 объявления</h2>
-
+    {% if number_bbs %}
+        <ul>
+            {% for bb in number_bbs %}
+                <li> {{ bb }} </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+    <p>There are no rubrics</p>{% endif %}
    {% for bb in bbs %}
            <li class="media my-5 p-3 border">
                {% url 'main:detail' rubric_pk=rubric.pk pk=bb.pk as url %}

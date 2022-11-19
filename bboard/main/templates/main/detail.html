@@ -28,7 +28,5 @@
        </div>
    {% endif %}
    <p><a href="{% url 'main:by_rubric' pk=bb.rubric.pk %}{{ all }}">Назад</a></p>
-    {% if user.is_admin == True %}
-        <p><a href="{% url 'main:profile_bb_change' user.pk %}">Изменить объявление</a></p>
-    {% endif %}
+    <p><a href="{% url 'main:profile_bb_change' user.pk %}">Изменить объявление</a></p>
 {% endblock %}

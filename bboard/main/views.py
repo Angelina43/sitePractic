@@ -46,8 +46,9 @@ from .forms import BbForm, AIFormSet
 
 
 def index(request):
-    bbs = Bb.objects.filter(is_active=True)[:4]
-    context = {'bbs': bbs}
+    bbs = Bb.objects.filter(rubric=4)[:4]
+    number_bbs = len(Bb.objects.filter(rubric=4))
+    context = {'bbs': bbs, 'number_bbs': number_bbs}
     return render(request, 'main/index.html', context)
 
 

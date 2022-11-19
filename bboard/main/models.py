@@ -42,6 +42,7 @@ class Rubric(models.Model):
                                      verbose_name='Надрубрика')
 
 
+
 class SuperRubricManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(super_rubric__isnull=True)
